@@ -1,0 +1,15 @@
+Package: SPATFunctions
+Type: Package
+Title: Functions for the Salmon Pattern Analysis Tool
+Version: 0.1.0
+Author: Gottfried Pestal, Michael Barrus
+Maintainer: The package maintainer <gpestal@solv.ca>
+Description: This package includes functions for data exploration, data transformation, clustering, and pattern matching.
+License: GNU General Public Licence
+Encoding: UTF-8
+LazyData: true
+Imports: tidyverse
+SystemRequirements: 
+Suggestions:
+VignetteBuilder: knitr
+URL: https://github.com/SOLV-Code/SPATFunctions-Package
