@@ -20,12 +20,45 @@ install_github("SOLV-Code/SPATFunctions-Package",
 library(SPATFunctions)				
 ```
 
+## Design Principles
+
+The goal is to build a tool kit for guided exploration of salmon data, not an automated data mining tool that blindly searches through vast data sets.
+
+The plan is to develop a generalized flow chart of steps, build package functions for each step, and then connect the functions in a shiny app.
+
+
 ## Data Conventions
 
-* *category columns* need to be coded as text. For example is areas in the raw data are coded as 1-17, revise the values to "A1", "A2", "A3", etc., using something like  *raw.df$area <- paste0("A",raw.df$area)*
+
+### Required Identifier Variables
+
+Column Label | Description
+-- | --
+*Year* | numeric value identifying the year. Need this even if all data is from the same year. Will be used in plot labels and to populate filters in the app. The *Year* column is excluded from  any data treatment and analysis functions.
+*Pop* | character string identifying the names of the basic units (e.g. conservation unit, stock). SPAT is designed to explore patterns across different populations, so need at least 2 populations. 
+
+
+### Optional Identifier Variables
+
+Column Label | Description
+-- | --
+*Grp_XYZ* | character string identifying various groupings of the basic units (e.g. area, watershed). *Important:* these need to be coded as text. For example if areas in the raw data are coded as 1-17, revise the values to "A1", "A2", "A3", etc., using something like  *raw.df$area <- paste0("A",raw.df$area)*
+*Date* | Will probably not build in any app responsiveness to this in the first round, but could have this in the data file to filter records before applying any of the functions 
+*SampleID* | character string to identify individual samples (e.g. if have 500 length measurements from each year, give each an ID like *S-2010-001*,*S-2010-002*,etc)
+
+*Note:* there should be no factors in the input object. If reading in from a csv file, include 
+*stringsAsFactors = FALSE*. 
+
+### Value Variables
+
+
 * *numerical columns*: assumed to be meaningful as numbers (i.e. for calculating means, logs etc)
-* there should be no factors in the input object. If reading in from a csv file, include 
-*stringsAsFactors = FALSE*
+* *character columns*: assumed to be meaningful as qualitative information, unless the column label starts with *Grp_*. 
+
+**Need to think some more about how to handle qualitative data vs. grouping variables, because some analyses can also use the grouping variables (e.g. recursive partitioning).**
+
+### 3 Types of Data Structure
+
 
 
 
