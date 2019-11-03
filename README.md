@@ -16,9 +16,10 @@ To install this package directly from github, use
 ```
 install.packages("devtools") # Install the devtools package
 library(devtools) # Load the devtools package.
-install_github("SOLV-Code/forecastR_package", 
+install_github("SOLV-Code/SPATFunctions-Package", 
 				dependencies = TRUE,
-                build_vignettes = FALSE))
+                build_vignettes = FALSE)
+library(SPATFunctions)				
 ```
 
 
