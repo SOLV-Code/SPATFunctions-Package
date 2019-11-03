@@ -3,12 +3,15 @@
 #' This function applies various data transformations to a data frame
 #' @param x a data frame with at least 1 numeric column
 #' @param type one of  "none","log" ,"z-score","perc_rank"
-#' @param cols vector with names of columns to be transformed. Use NULL to transform all numric columns.
+#' @param cols vector with names of columns to be transformed. Use NULL to transform all numeric columns.
 #' @param zero.convert replace 0 with this value if required by the transformation (e.g. log)
 #' @keywords transform, z-score, percent rank
 #' @export
 #' @examples
-#' iris.transform <- transformData(iris,type="log",cols="Sepal.Length",zero.convert = NA)
+#' iris.transform <- transformData(iris,
+#'    type="log",
+#'    cols="Sepal.Length",
+#'    zero.convert = NA)
 #' head(iris.transform)
 
 
