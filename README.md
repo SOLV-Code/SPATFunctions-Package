@@ -60,7 +60,7 @@ Column Label | Description
 ### 3 Levels of Data Resolution
 
 The data structure described above allows for 3 levels of resolution in a consistent framework. 
-Note that not all analysis methods will work at all 3 levels.
+
 
 Resolution  | Required Identifier Columns |   Analysis Example
 -- | -- | --
@@ -71,6 +71,31 @@ Resolution  | Required Identifier Columns |   Analysis Example
 The package includes an example of each data type. 
 
 We are planning to eventually build a function that allows for easy roll-ups (*rollupData()*), but for now you have to do that step on your own.
+
+
+## Analytical Methods
+
+We are in the process of scoping out the suite of specific analytical methods that should be included in SPAT. 
+
+Analytical methods differ in terms of:
+
+- the level of data resolution they can be applied to
+- the number and type of variables they can handle
+
+The table below is an early attempt of matching analytical methods to data characteristics. **Bold** labels indicate methods currently covered in *SPATFunctions*. *Italic* labels indicate methods planned for the current development phase. Regular labels indicate ideas for future work.
+
+**Method** | **Description** | **Package** | **Variables**  | **Samples** | **Time Series** | **Summaries**
+-- | -- | -- | -- | -- | --  | -- 
+K-means Clustering | TBI | *kmeans()* is in base R *{stats}* |  2 to *n*  numeric vars |  X | X | -
+
+
+
+
+
+
+
+
+
 
 
 
