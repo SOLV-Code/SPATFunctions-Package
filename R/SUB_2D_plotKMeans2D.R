@@ -1,4 +1,4 @@
-#' plotKMeans
+#' plotKMeans2D
 #'
 #' Subroutine for creating diagnostic plots of the output from applyClassInt()
 #' @param x object created by applyClassInt()
@@ -16,7 +16,7 @@
 
 
 
-plotKMeans <- function(x,plot.type="basic",label = "Var Name"){
+plotKMeans2D <- function(x,plot.type="basic",label = "Var Name"){
 
 
 
