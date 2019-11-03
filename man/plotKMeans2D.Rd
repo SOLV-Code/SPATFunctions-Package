@@ -4,22 +4,24 @@
 \alias{plotKMeans2D}
 \title{plotKMeans2D}
 \usage{
-plotKMeans2D(x, plot.type = "basic", label = "Var Name")
+plotKMeans2D(x, fit, plot.type = "basic")
 }
 \arguments{
-\item{x}{object created by applyClassInt()}
+\item{x}{input used in call to applyKMeans2D()}
 
-\item{plot.type}{one of ""basic", "hist", "dens","cumul"}
+\item{fit}{object created by applyKMeans2D()}
+
+\item{plot.type}{none yet}
 }
 \description{
-Subroutine for creating diagnostic plots of the output from applyClassInt()
+Subroutine for creating diagnostic plots of the output from applyKMeans2D()
 }
 \examples{
-petals.classes <- applyClassInt(iris$Petal.Length,
-   style="fisher",breaks=2)
-plotClassInt(petals.classes,
-   plot.type="cumul",
-   label = "Petal Length")
+test.data <- SPATData_Samples[,c("Weight","LengthMEF")]
+test.clusters <- applyKMeans2D(test.data,centers= 2)
+names(test.clusters)
+plotKMeans2D(x=test.data,fit=test.clusters)
 }
-\keyword{classification}
-\keyword{interval}
+\keyword{clustering,}
+\keyword{k-means,}
+\keyword{plot}

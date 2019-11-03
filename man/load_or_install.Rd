@@ -15,3 +15,6 @@ Nothing returned.
 \description{
 For installing and/or loading R packages
 }
+\examples{
+load_or_install("tidyverse")
+}
