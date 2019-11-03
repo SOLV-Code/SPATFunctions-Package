@@ -57,7 +57,20 @@ Column Label | Description
 
 **Need to think some more about how to handle qualitative data vs. grouping variables, because some analyses can also use the grouping variables (e.g. recursive partitioning).**
 
-### 3 Types of Data Structure
+### 3 Levels of Data Resolution
+
+The data structure described above allows for 3 levels of resolution in a consistent framework. 
+Note that not all analysis methods will work at all 3 levels.
+
+Resolution  | Required Identifier Columns |   Analysis Example
+-- | -- | --
+*Samples* |  Year, Pop, Date, Sample_ID  |  check for differences in size distribution between years for each population, then match populations based on the pattern of changes
+*Time Series* | Year, Pop  |  match populations based on the pattern of standardized deviations from long-term mean size
+*Summary*  |   Year, Pop  |  pick a year, then fit a classification tree based on multiple numeric and qualitative variables (e.g. productivity, area, status).
+
+The package includes an example of each data type. 
+
+We are planning to eventually build a function that allows for easy roll-ups (*rollupData()*), but for now you have to do that step on your own.
 
 
 
@@ -82,7 +95,7 @@ Column Label | Description
 ### Data Treatment Functions
 
 * *fixData():* function that uses *summarizeData()* and some general rules to automatically apply *transformData()* as needed, as well as drop any highly correlated variables (e.g. would remove one of size and weight).
-
+* *rollupData():* function that rolls up a data set from individual samples to annual values, and from annual values to various summaries. For example, go from a file with individual size records to a time series of annual medians, to a classification of Large vs. Small. The idea is to basically build a case-specific user-friendly wrapper for the dplyr functionality of *group_by() %>% summarise()*
 
 ### Clustering Functions
 
