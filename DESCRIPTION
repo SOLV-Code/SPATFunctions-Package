@@ -8,8 +8,9 @@ Description: This package includes functions for data exploration, data transfor
 License: GNU General Public Licence
 Encoding: UTF-8
 LazyData: true
-Imports: tidyverse
+Imports: tidyverse, knitr
 SystemRequirements: 
 Suggestions:
 VignetteBuilder: knitr
 URL: https://github.com/SOLV-Code/SPATFunctions-Package
+RoxygenNote: 6.1.1
