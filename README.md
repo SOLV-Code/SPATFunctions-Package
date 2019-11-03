@@ -97,16 +97,10 @@ The table below is an early attempt of matching analytical methods to data chara
 
 
 
-
-
-
-
-
-
 ## Current Functions
 
 ### Data Treatment Functions
-* *summarizeData():* function to generate a summary of the variables in a data frame (incl. checking for skewness, multimodality, correlation, and proportion of missing values)
+
 * *transformData():* function to apply various transformations to the input data. Currently includes
  the options "none","log" ,"z-score", and "perc_rank".
 
@@ -122,6 +116,7 @@ The table below is an early attempt of matching analytical methods to data chara
 
 ### Data Treatment Functions
 
+* *summarizeData():* function to generate a summary of the variables in a data frame (incl. checking for skewness, multimodality, correlation, and proportion of missing values)
 * *fixData():* function that uses *summarizeData()* and some general rules to automatically apply *transformData()* as needed, as well as drop any highly correlated variables (e.g. would remove one of size and weight).
 * *rollupData():* function that rolls up a data set from individual samples to annual values, and from annual values to various summaries. For example, go from a file with individual size records to a time series of annual medians, to a classification of Large vs. Small. The idea is to basically build a case-specific user-friendly wrapper for the dplyr functionality of *group_by() %>% summarise()*
 
