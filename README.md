@@ -20,6 +20,14 @@ install_github("SOLV-Code/SPATFunctions-Package",
 library(SPATFunctions)				
 ```
 
+## Data Conventions
+
+* *category columns* need to be coded as text. For example is areas in the raw data are coded as 1-17, revise the values to "A1", "A2", "A3", etc., using something like  *raw.df$area <- paste0("A",raw.df$area)*
+* *numerical columns*: assumed to be meaningful as numbers (i.e. for calculating means, logs etc)
+* there should be no factors in the input object. If reading in from a csv file, include 
+*stringsAsFactors = FALSE*
+
+
 
 ## Current Functions
 
