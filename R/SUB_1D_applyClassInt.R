@@ -7,11 +7,12 @@
 #' @keywords classification interval, breaks
 #' @export
 #' @examples
-#' petals.classes <- applyClassInt(iris$Petal.Length,
+#' length.classes <- applyClassInt(SPATData_Samples$LengthMEF,
 #'    style="fisher",breaks=3)
-#' petals.classes
-
-
+#' names(length.classes)
+#' length.classes$breaks
+#' length.classes$num.na
+#' length.classes$fit
 
 applyClassInt <- function(x,style="fisher",breaks=3){
 

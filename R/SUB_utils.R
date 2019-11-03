@@ -12,6 +12,9 @@ is_installed <- function(mypkg){ is.element(mypkg, installed.packages()[,1])}
 #' @export
 #'
 #' @examples
+#' load_or_install("tidyverse")
+
+
 load_or_install <- function(package_names){
 	# function to load/install required packages
 	for(package_name in package_names){

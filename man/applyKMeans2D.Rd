@@ -19,9 +19,11 @@ Subroutine for applying k-means clustering based on to 2 variables. This is simp
    for the kmeans() function from the {stats} package.
 }
 \examples{
-petals.classes <- applyClassInt(iris$Petal.Length,
-   style="fisher",breaks=3)
-petals.classes
+test.clusters <- applyKMeans2D(SPATData_Samples[,c("SampleSW","LengthMEF")])
+names(test.clusters)
+test.clusters$centers
+test.clusters$size
+test.clusters$na.num
 }
 \keyword{clustering}
 \keyword{k-means,}

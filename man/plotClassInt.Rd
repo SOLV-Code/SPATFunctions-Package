@@ -15,11 +15,11 @@ plotClassInt(x, plot.type = "basic", label = "Var Name")
 Subroutine for creating diagnostic plots of the output from applyClassInt()
 }
 \examples{
-petals.classes <- applyClassInt(iris$Petal.Length,
-   style="fisher",breaks=2)
-plotClassInt(petals.classes,
+length.classes <- applyClassInt(SPATData_Samples$LengthMEF,
+   style="fisher",breaks=3)
+plotClassInt(length.classes,
    plot.type="cumul",
-   label = "Petal Length")
+   label = "Length (Mid-eye to Fork,mm)")
 }
 \keyword{classification}
 \keyword{interval}

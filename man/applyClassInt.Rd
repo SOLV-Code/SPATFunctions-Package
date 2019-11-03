@@ -17,9 +17,12 @@ applyClassInt(x, style = "fisher", breaks = 3)
 Subroutine for calculating classification intervals (uses the classInt package)
 }
 \examples{
-petals.classes <- applyClassInt(iris$Petal.Length,
+length.classes <- applyClassInt(SPATData_Samples$LengthMEF,
    style="fisher",breaks=3)
-petals.classes
+names(length.classes)
+length.classes$breaks
+length.classes$num.na
+length.classes$fit
 }
 \keyword{breaks}
 \keyword{classification}

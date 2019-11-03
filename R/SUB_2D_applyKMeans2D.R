@@ -8,9 +8,12 @@
 #' @keywords k-means, clustering
 #' @export
 #' @examples
-#' petals.classes <- applyClassInt(iris$Petal.Length,
-#'    style="fisher",breaks=3)
-#' petals.classes
+#' test.clusters <- applyKMeans2D(SPATData_Samples[,c("SampleSW","LengthMEF")])
+#' names(test.clusters)
+#' test.clusters$centers
+#' test.clusters$size
+#' test.clusters$na.num
+
 
 
 applyKMeans2D <- function(x,centers= 3, iter.max = 100, nstart = 5,
@@ -19,9 +22,12 @@ applyKMeans2D <- function(x,centers= 3, iter.max = 100, nstart = 5,
 if(dim(x)[2] != 2 |  sum(unlist(lapply(x,is.numeric))) !=2 ){warning("input data must have exactly 2 numeric columns"); stop()}
 
 
-fit.out <- kmeans(x = x, centers = centers, iter.max = iter.max, nstart = nstart, algorithm = "Hartigan-Wong")
+fit.out <- kmeans(x = na.omit(x), centers = centers, iter.max = iter.max, nstart = nstart, algorithm = "Hartigan-Wong")
 
-#for now just feed it out.
+#for now just feed it out and add num.na.
+
+fit.out$na.num <- sum(!(complete.cases(x)))
+
 # when we have others, create a consistent object
 
  return(fit.out)
