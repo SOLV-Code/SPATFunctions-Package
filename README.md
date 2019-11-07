@@ -89,9 +89,9 @@ The table below is an early attempt of matching analytical methods to data chara
 **Classification Intervals** | TBI | *{classInt}* |  1 numeric var |  X | X | X
 **K-means Clustering** | TBI | *kmeans()* is in base R *{stats}* |  2 to *n*  numeric vars |  X | X | X
 **Recursive Partitioning**| TBI | *{rpart}* , andexploring others |  1 to *n* numeric or categorical var |  X | X | X
-*Time series Covariation* | TBI | various options, need to think how to handle transformations (e.g. wavelet) | 1 numeric variable  | X (after summarizing) | X | X (if have multiple years)
-
-
+*Basic Covariation Matrices* | TBI | various options, need to think how to handle transformations (e.g. wavelet) | 1 numeric variable  | X (after summarizing) | X | X (if have multiple years)
+*Dynamic Factor Analysis* | TBI | various options | 1 numeric variable  | X (after summarizing) | X | X (if have multiple years)
+*Dynamic Time Warping* | TBI | {dtw} package | 1 numeric variable  | X (after summarizing) | X | X (if have multiple years)
 
 
 
