@@ -17,16 +17,27 @@ library(TTR)
 
 do.pdf <- TRUE
 
-if(do.pdf){pdf("Vignette2_TestingPlots.pdf",onefile = TRUE, height=8.5, width=11)}
+for(data.use in c("Ex1","Ex2")){
+
+
+if(do.pdf){pdf(paste0("Vignette2_TestingPlots_",data.use,".pdf"),onefile = TRUE, height=8.5, width=11)}
 
 # prep a subset of the data
 
+if(data.use == "Ex1"){
 test.data <- SPATData_TimeSeries %>% mutate(RpS = Recruits/Spawners) %>%
   select(Stock,Year,RpS) %>%
   pivot_wider(names_from = Stock,values_from = RpS) %>%
-# left_join(rename(SPATData_EnvCov,Year=yr), by="Year") %>%
   select(-Year)
+}
 
+if(data.use == "Ex2"){
+test.data <- SPATData_TimeSeries %>% mutate(RpS = Recruits/Spawners) %>%
+  select(Stock,Year,RpS) %>%
+  pivot_wider(names_from = Stock,values_from = RpS) %>%
+  left_join(rename(SPATData_EnvCov,Year=yr), by="Year") %>%
+  select(Stock1,Stock3,Stock6,apesst,maesst,jnesst,pdo)
+}
 
 
 test.years <- sort(unique(SPATData_TimeSeries$Year))
@@ -45,14 +56,19 @@ length(test.years)
 cov.mat.basic <- cov(na.omit(test.data))
 cor.mat.basic <- cor(na.omit(test.data))
 
-cor.mat.basic[1:10,1:5]
+#cor.mat.basic[1:10,1:5]
 
 
 # plot the basic correlation matrix
-par(mai=rep(1,4))
-corrplot(cor.mat.basic, type= "upper",diag = FALSE, method = "circle",
-         order = "original")
 
+corrplot(cor.mat.basic, type= "upper",diag = FALSE, method = "circle",
+         order = "original",mar = c(2, 2, 2, 2))
+
+title(main= "Basic Correlation Matrix",line=3)
+
+corrplot(cor.mat.basic, order = "hclust", addrect = 5, diag = FALSE,
+          mar = c(2, 2, 2, 2))
+title(main= "Clustered Correlation Matrix",line=3)
 
 # STEP 2: loop through pairwise comparisons instead
 # - set this up to work through all pairs and produce a matrix
@@ -92,9 +108,9 @@ par(mfrow=c(3,3),mai=rep(0.5,4))
 for(lag in dimnames(pw.out.obj)[[3]]){
 
 corrplot(pw.out.obj[,,lag], type= "upper",diag = FALSE, method = "circle",
-         order = "original")
+         order = "original", mar = c(2, 2, 2, 2))
 
-title(main=paste("Shift =",lag),line=-2)
+title(main=paste("Shift =",lag),line=3)
 
 } # end looping through lags
 
@@ -102,27 +118,44 @@ title(main=paste("Shift =",lag),line=-2)
 
 # STEP 3: Look at pairwise running and cumulative correlations
 
+par(mfrow=c(3,3))
 
-data.use <- na.omit(select(test.data,Stock1, Stock6))
-na.idx <-  !complete.cases(select(test.data,Stock1, Stock6))
 
-test.fit.cov.cumul <- runCov(data.use[,1],data.use[,2], n = 12, sample = TRUE, cumulative = TRUE)
+for(i in names(test.data)){
+  for(j in names(test.data)){
+
+data.use <- na.omit(test.data[,c(i,j)])
+na.idx <-  !complete.cases(test.data[,c(i,j)])
+
+#test.fit.cov.cumul <- runCov(data.use[,1],data.use[,2], n = 12, sample = TRUE, cumulative = TRUE)
 test.fit.cor.cumul <- runCor(data.use[,1],data.use[,2], n = 12, sample = TRUE, cumulative = TRUE)
 
-test.fit.cov.window <- runCov(data.use[,1],data.use[,2], n = 12, sample = TRUE, cumulative = FALSE)
+#test.fit.cov.window <- runCov(data.use[,1],data.use[,2], n = 12, sample = TRUE, cumulative = FALSE)
 test.fit.cor.window <- runCor(data.use[,1],data.use[,2], n = 12, sample = TRUE, cumulative = FALSE)
 
+if(i!=j){
 
-par(mfrow=c(1,1))
-plot(test.years[!na.idx], test.fit.cor.cumul,type="l",bty="n")
-plot(test.years[!na.idx], test.fit.cor.window,type="l", bty="n")
+plot(1:5,1:5,type="n",bty="n",xlab="Year",ylab = "Correlation",
+          ylim=c(-1,1),xlim=c(min(test.years)-10,max(test.years)))
+abline(h=c(-0.5,0.5),col="red",lty=2)
+lines(test.years[!na.idx], test.fit.cor.window,type="l",col="lightblue")
+lines(test.years[!na.idx], test.fit.cor.cumul,type="o",pch=19,col="darkblue",cex=0.5)
+legend("topleft",legend=c("Window","Cumul"),pch=c(NA,19),col=c("lightblue","darkblue"),lty=1,bty="n")
+
+title(main = paste(i,"vs.",j))
+
+  }
 
 
+
+}} # end looping through pairs
 
 
 
 
 if(do.pdf){dev.off()}
+
+} # end looping through examples
 
 
 
@@ -135,11 +168,11 @@ if(do.pdf){dev.off()}
 
 library(corrr)
 
-test.out <- correlate(iris[-5])
-network_plot(test.out)
+test.out <- correlate(test.data)
+network_plot(test.out,min_cor=0)
 
 # not working
-#corrplot(test.out,is.corr=FALSE)
+
 
 
 
