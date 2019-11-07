@@ -13,3 +13,28 @@
 #' }
 #' @source Dummy Data
 "SPATData_Samples"
+
+
+
+
+#' Environmental Covariates Data Illustration
+#'
+#' A dataset containing various environmental covariates used in the 2019 Forecast for 
+#' Fraser River Sockeye Salmon (REF)
+#'
+#' @format A data frame with  11 variables:
+#' \describe{
+#'   \item{year}{year of observation}
+#'   \item{aflow}{April flow}
+#'   \item{mflow}{May flow}
+#'   \item{jflow}{June flow}
+#'   \item{}{}
+#'   ...
+#' }
+#' @source Include REF
+"SPATData_EnvCov"
+
+
+
+
+

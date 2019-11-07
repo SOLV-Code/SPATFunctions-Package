@@ -14,11 +14,20 @@ library(corrr)
 library(corrplot)
 library(TTR)
 
+
+do.pdf <- TRUE
+
+if(do.pdf){pdf("Vignette2_TestingPlots.pdf",onefile = TRUE, height=8.5, width=11)}
+
 # prep a subset of the data
 
 test.data <- SPATData_TimeSeries %>% mutate(RpS = Recruits/Spawners) %>%
   select(Stock,Year,RpS) %>%
-  pivot_wider(names_from = Stock,values_from = RpS) %>% select(-Year)
+  pivot_wider(names_from = Stock,values_from = RpS) %>%
+# left_join(rename(SPATData_EnvCov,Year=yr), by="Year") %>%
+  select(-Year)
+
+
 
 test.years <- sort(unique(SPATData_TimeSeries$Year))
 
@@ -27,7 +36,7 @@ dim(test.data)
 length(test.years)
 
 
-# correlation matrix using base R
+# STEP 1: simple correlation matrix using base R
 # simple, but:
 #  - only years with data for all stocks
 #  - only for full series
@@ -40,11 +49,12 @@ cor.mat.basic[1:10,1:5]
 
 
 # plot the basic correlation matrix
+par(mai=rep(1,4))
 corrplot(cor.mat.basic, type= "upper",diag = FALSE, method = "circle",
          order = "original")
 
 
-# loop through pairwise comparisons instead
+# STEP 2: loop through pairwise comparisons instead
 # - set this up to work through all pairs and produce a matrix
 # - depends only on complete pairs, rather than years that are
 #        complete for ALL stocks
@@ -75,35 +85,44 @@ pw.out.obj[i,j, 1:9] <- c(ccf.tmp$acf)
 #pw.out.obj[1:5,1:5,]
 
 # plot the correlation matrix by lag
-corrplot(pw.out.obj[,,"0"], type= "upper",diag = FALSE, method = "circle",
+
+
+par(mfrow=c(3,3),mai=rep(0.5,4))
+
+for(lag in dimnames(pw.out.obj)[[3]]){
+
+corrplot(pw.out.obj[,,lag], type= "upper",diag = FALSE, method = "circle",
          order = "original")
 
+title(main=paste("Shift =",lag),line=-2)
+
+} # end looping through lags
+
+
+
+# STEP 3: Look at pairwise running and cumulative correlations
+
+
+data.use <- na.omit(select(test.data,Stock1, Stock6))
+na.idx <-  !complete.cases(select(test.data,Stock1, Stock6))
+
+test.fit.cov.cumul <- runCov(data.use[,1],data.use[,2], n = 12, sample = TRUE, cumulative = TRUE)
+test.fit.cor.cumul <- runCor(data.use[,1],data.use[,2], n = 12, sample = TRUE, cumulative = TRUE)
+
+test.fit.cov.window <- runCov(data.use[,1],data.use[,2], n = 12, sample = TRUE, cumulative = FALSE)
+test.fit.cor.window <- runCor(data.use[,1],data.use[,2], n = 12, sample = TRUE, cumulative = FALSE)
+
+
+par(mfrow=c(1,1))
+plot(test.years[!na.idx], test.fit.cor.cumul,type="l",bty="n")
+plot(test.years[!na.idx], test.fit.cor.window,type="l", bty="n")
 
 
 
 
 
 
-###########################################################################
-# TTR Package
-#########################################################################
-install.packages("TTR")
-
-
-data.use <- na.omit(select(test.data,Stock1, Stock2))
-na.idx <-  !complete.cases(select(test.data,Stock1, Stock2))
-test.fit.cov <- runCov(data.use[,1],data.use[,2], n = 10, sample = TRUE, cumulative = TRUE)
-test.fit.cor <- runCor(data.use[,1],data.use[,2], n = 10, sample = TRUE, cumulative = TRUE)
-
-plot(test.years[!na.idx], test.fit.cov,type="l")
-plot(test.years[!na.idx], test.fit.cor,type="l")
-
-
-
-
-
-
-
+if(do.pdf){dev.off()}
 
 
 
