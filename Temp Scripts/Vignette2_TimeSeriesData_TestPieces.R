@@ -44,27 +44,43 @@ corrplot(cor.mat.basic, type= "upper",diag = FALSE, method = "circle",
          order = "original")
 
 
+# loop through pairwise comparisons instead
+# - set this up to work through all pairs and produce a matrix
+# - depends only on complete pairs, rather than years that are
+#        complete for ALL stocks
+# - include time-shifted comparison (up to some max offset)
+# - for now doing in nested loops
+# - need to convert to a function, then optimize fn speed
+
+
+max.lag <- 4
+
+out.obj <- array(data = NA,dim = c(rep(dim(test.data)[2],2), 2*max.lag + 1),
+                 dimnames = list(names(test.data),names(test.data),paste0(-max.lag:max.lag)))
+
+for(i in names(test.data)[1]){
+  for(j in names(test.data)[2]){
+
+
+ccf.tmp <-    ccf(test.data$Stock1, test.data$Stock12, lag.max = max.lag , type = "correlation",
+        plot = FALSE, na.action = na.omit)
+
+out.obj[i,j, 1:9] <- c(ccf.tmp$acf)
+
+
+}} # end looping through pairwise tests
+
+
+out.obj[,,c("-3")]
+out.obj[1:5,1:5,]
+
+# plot the correlation matrix by lag
+corrplot(out.obj[,,"3"], type= "upper",diag = FALSE, method = "circle",
+         order = "original")
 
 
 
 
-
-
-
-
-
-
-
-
-
-# do pairwise cross-correlation or cross-variance
-# -> could set this up to work through all pairs and produce a matrix
-# -> how would this differ from basic Cov(), Cor()? -> would use different subsets
-# depending on complete pairs, rather tham years that are complete for ALL stocks
-
-tmp.out <- ccf(test.data$Stock1, test.data$Stock2, lag.max = 5, type = "correlation",
-               plot = TRUE, na.action = na.omit)
-tmp.out
 
 
 
@@ -107,19 +123,6 @@ network_plot(test.out)
 #corrplot(test.out,is.corr=FALSE)
 
 
-
-##########################################
-# corrplot package
-###################################
-
-
-
-
-
-
-##########################################
-#roll_cor: Rolling Correlation Matrices
-########################################
 
 
 
