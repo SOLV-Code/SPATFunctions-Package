@@ -66,8 +66,8 @@ corrplot(cor.mat.basic, type= "upper",diag = FALSE, method = "circle",
 
 title(main= "Basic Correlation Matrix",line=3)
 
-corrplot(cor.mat.basic, order = "hclust", addrect = 5, diag = FALSE,
-          mar = c(2, 2, 2, 2))
+corrplot(cor.mat.basic, order = "hclust", addrect = round(dim(cor.mat.basic)[1]/3),
+          diag = FALSE,   mar = c(2, 2, 2, 2))
 title(main= "Clustered Correlation Matrix",line=3)
 
 # STEP 2: loop through pairwise comparisons instead
