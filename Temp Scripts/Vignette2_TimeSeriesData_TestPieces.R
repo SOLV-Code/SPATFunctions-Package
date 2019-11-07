@@ -55,27 +55,27 @@ corrplot(cor.mat.basic, type= "upper",diag = FALSE, method = "circle",
 
 max.lag <- 4
 
-out.obj <- array(data = NA,dim = c(rep(dim(test.data)[2],2), 2*max.lag + 1),
+pw.out.obj <- array(data = NA,dim = c(rep(dim(test.data)[2],2), 2*max.lag + 1),
                  dimnames = list(names(test.data),names(test.data),paste0(-max.lag:max.lag)))
 
-for(i in names(test.data)[1]){
-  for(j in names(test.data)[2]){
+for(i in names(test.data)){
+  for(j in names(test.data)){
 
 
-ccf.tmp <-    ccf(test.data$Stock1, test.data$Stock12, lag.max = max.lag , type = "correlation",
+ccf.tmp <-    ccf(test.data[i], test.data[j], lag.max = max.lag , type = "correlation",
         plot = FALSE, na.action = na.omit)
 
-out.obj[i,j, 1:9] <- c(ccf.tmp$acf)
+pw.out.obj[i,j, 1:9] <- c(ccf.tmp$acf)
 
 
 }} # end looping through pairwise tests
 
 
-out.obj[,,c("-3")]
-out.obj[1:5,1:5,]
+#pw.out.obj[,,c("-3")]
+#pw.out.obj[1:5,1:5,]
 
 # plot the correlation matrix by lag
-corrplot(out.obj[,,"3"], type= "upper",diag = FALSE, method = "circle",
+corrplot(pw.out.obj[,,"0"], type= "upper",diag = FALSE, method = "circle",
          order = "original")
 
 

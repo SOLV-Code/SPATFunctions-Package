@@ -1,0 +1,77 @@
+---
+title: "Exploring Patterns in Time Series Data with the SPATFunctions Package"
+author: "Gottfried Pestal, Michael Barrus"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Exploring Patterns in Time Series Data with the SPATFunctions Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  \usepackage[utf8]{inputenc}
+---
+
+
+
+
+
+# Introduction
+
+
+
+## General Purpose
+
+Patterns between time series
+
+
+## Specific topic area
+
+
+Built for and tested with salmon population time series, which have the following
+typical characteristics:
+
+* usually short and gappy 
+* b
+* c 
+
+## Previous Work 
+   
+* Peterman and Dorner (2012): 64 sockeye stocks, correlation in spawner-recruit residuals
+* Dorner, Catalano and Peterman (2018):  24(?) Chinook stocks, DFA to find clusters in R/S data
+   
+   
+   
+## Package Design 
+
+
+Focus of the package function
+
+
+guiding principles for the  design  of *{SPATFunctions}*
+
+* exploratory and versatile
+* fast
+* easy integration into shiny apps
+
+
+
+#  Example 1:  Spawner-Recruit Data for 19 Stocks
+
+
+```{r}
+# Add two numbers together
+add <- function(a, b) a + b
+add(10, 20)
+```
+
+
+```{r, fig.show='hold'}
+plot(1:10)
+plot(10:1)
+```
+    
+   
+   
+   
+   
+   
+   
