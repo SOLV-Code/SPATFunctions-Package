@@ -15,7 +15,7 @@ applyRpart(formula, data, minsplit = 20)
 \item{minsplit}{smallest number of records for attempting a split. default is 20.}
 }
 \description{
-Subroutine for applying classification trees using the the rpart package
+Subroutine for applying classification trees using the rpart package
 }
 \examples{
 formula.use <- as.formula("Species ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width")
