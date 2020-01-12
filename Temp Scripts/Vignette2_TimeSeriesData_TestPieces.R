@@ -88,7 +88,7 @@ for(i in names(test.data)){
   for(j in names(test.data)){
 
 
-ccf.tmp <-    ccf(test.data[i], test.data[j], lag.max = max.lag , type = "correlation",
+ccf.tmp <-    ccf(test.data[,i], test.data[,j], lag.max = max.lag , type = "correlation",
         plot = FALSE, na.action = na.omit)
 
 pw.out.obj[i,j, 1:9] <- c(ccf.tmp$acf)
