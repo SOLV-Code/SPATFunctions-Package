@@ -3,6 +3,7 @@
 export(applyClassInt)
 export(applyKMeans2D)
 export(applyRpart)
+export(calcCorrMatrix)
 export(load_or_install)
 export(plotClassInt)
 export(plotCorrMatrix)
