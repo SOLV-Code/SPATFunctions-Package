@@ -17,3 +17,12 @@ cor(mtcars[2:31,1],mtcars[1:30,2])
 ccf(mtcars[,1], mtcars[,2], lag.max = 4 , type = "correlation",
     plot = FALSE, na.action = na.omit)
 
+
+
+
+
+
+head(mtcars)
+shift(t(mtcars), n=c(0,0,1,2,0,3,0,0,0,0))
+
+
