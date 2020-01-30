@@ -23,7 +23,7 @@ out.list <- list(cor.mat = cor.out)
 return(out.list)
 
 
-} # end plotCorrMatrix
+} # end calcCorrMatrix
 
 
 

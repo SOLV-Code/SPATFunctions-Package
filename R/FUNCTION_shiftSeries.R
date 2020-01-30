@@ -1,6 +1,6 @@
 #' shiftSeries
 #'
-#' This function applies offsets the series in a data frame. For now, this is a wrapper for the
+#' This function applies offsets to the series in a data frame. For now, this is a wrapper for the
 #' shift() function from the {data.table} package.
 #' @param x a data frame with at least 1 numeric column
 #' @param type one of  "none","log" ,"z-score","perc_rank"
