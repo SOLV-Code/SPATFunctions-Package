@@ -1,7 +1,8 @@
+## SCRIPT TO TEST THE PACKAGE FUNCTIONS
 
+library(SPATFunctions)
 
-# plotCorrMatrix
-library(corrplot)
+# calcCorrMatrix() and plotCorrMatrix()
 M <- calcCorrMatrix(mtcars)
 plotCorrMatrix(M$cor.mat)
 plotCorrMatrix(M$cor.mat,order="hclust",n.groups=4)
@@ -18,11 +19,35 @@ ccf(mtcars[,1], mtcars[,2], lag.max = 4 , type = "correlation",
     plot = FALSE, na.action = na.omit)
 
 
+# transformData()
+
+iris.transform <- transformData(iris, type="log", cols="Sepal.Length", zero.convert = NA)
+head(iris)
+head(iris.transform)
+
+
+# shiftSeries()
+
+# internal fn
+iris[,1]
+.offset.fn(iris[,1],2)
+.offset.fn(iris[,1],-2)
+
+head(iris)
+iris.shifted <- shiftSeries(iris, offsets=c(0,-2,1,2,0))
+head(iris.shifted)
 
 
 
+#---------------
+M <- calcCorrMatrix(SPATData_EnvCov)
+plotCorrMatrix(M$cor.mat)
+plotCorrMatrix(M$cor.mat,order="hclust",n.groups=4)
 
-head(mtcars)
-shift(t(mtcars), n=c(0,0,1,2,0,3,0,0,0,0))
+
+
+head(SPATData_EnvCov)
+SPATData_EnvCov.shifted <- shiftSeries(SPATData_EnvCov, offsets=c(0,-2,1,2,0,3,0,0,0,0,0,0,0,0,0))
+head(SPATData_EnvCov.shifted)
 
 

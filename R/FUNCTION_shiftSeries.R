@@ -1,64 +1,55 @@
 #' shiftSeries
 #'
-#' This function applies offsets to the series in a data frame. For now, this is a wrapper for the
-#' shift() function from the {data.table} package.
-#' @param x a data frame with at least 1 numeric column
-#' @param type one of  "none","log" ,"z-score","perc_rank"
-#' @param cols vector with names of columns to be transformed. Use NULL to transform all numeric columns.
-#' @param zero.convert replace 0 with this value if required by the transformation (e.g. log)
-#' @keywords transform, z-score, percent rank
+#' This function applies offsets to the series in a data frame.
+#' @param X a data frame with at least 2 numeric columns
+#' @param offsets vector with offsets for each column in X
+#' @keywords shift, lag, lead, offset
 #' @export
 #' @examples
-#' iris.transform <- transformData(iris,
-#'    type="log",
-#'    cols="Sepal.Length",
-#'    zero.convert = NA)
-#' head(iris.transform)
+#' iris.shifted <- shiftSeries(iris,
+#'    offsets =  c(0,2,-1,0,0,0),
+#' head(iris.shifted)
 
 
-shiftSeries <- function(x,type= "none", cols=NULL,zero.convert = NA){
+shiftSeries <- function(X,offsets=NULL){
 
-# To Do
-# - expand to handle single vectors as well
+if(is.null(offsets)){offsets <- rep(0,dim(X)[2])}
+if(length(offsets) != dim(X)[2]){warning("length of offset vector must match columns in input data frame"); stop()}
 
+# can use apply() here? would need different input value for each column.
+# do loop for now, and see if it becomes a speed issue...
+# See: https://github.com/SOLV-Code/SPATFunctions-Package/issues/31
 
-cols.idx <-  unlist(lapply(x, is.numeric))
-
-x.out <- NA  # this way it doesn't give any output if the type is not recognized
-
-if(!is.null(cols)){ cols.idx <- cols.idx & names(x) %in% cols }
-
-if(type=="none"){ x.out <- x }
-
-if(type=="log"){
-				x.out <- x
-				x.out[,cols.idx] <- x.out[,cols.idx] %>% replace(. == 0, zero.convert) %>% log()
-				# still need to handle negative values! -> create a warning for now
-		 }
-
-if(type=="perc_rank"){
-
-				x.out <- x
-				x.out[,cols.idx] <-  sapply(x.out[,cols.idx],dplyr::percent_rank)
-
-
-			}
-
-
-if(type=="z-score"){
-				x.out <- x
-				x.out[,cols.idx] <- x.out[,cols.idx] %>% scale() %>% as.data.frame()
-			}
+for(i in 1:dim(X)[2]){
+    X[,i] <- .offset.fn(X[,i],offsets[i])
+  }
 
 
 
-
-
-return(x.out)
+return(X)
 
 }
 
 
 
+.offset.fn <- function(x,offset){
+  #' .offset.fn
+  #'
+  #' This function applies offsets to a single vector
+  #' @param X vector
+  #' @param offset offset value
+  #' @keywords shift, lag, lead, offset
+  #' @export
+  #' @examples
+  #' iris[,1]
+  #' .offset.fn(iris[,1],2)
+
+if(offset == 0 ) {x.out <- x}
+if(offset < 0 ) { x.out <- dplyr::lag(x,-offset)}
+if(offset > 0 ) { x.out <- dplyr::lead(x,offset)}
+
+return(x.out)
+
+}
 
 
