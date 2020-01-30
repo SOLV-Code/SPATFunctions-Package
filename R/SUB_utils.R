@@ -1,3 +1,26 @@
+include.dependencies <- function(){
+#' @title Internal handling of dependencies
+#'
+#' @description Seems like this is needed in addition to the import list in the DESCRIPTION file, so keeping them all together in one place.
+#' @import dplyr
+#' @import tidyverse
+#' @import knitr
+#' @import classInt
+#' @import corrr
+#' @import corrplot
+#' @import TTR
+#' @return Nothing returned.
+#' @export
+
+
+print("including dependencies")
+
+
+} # end function include.dependencies
+
+
+# don't think we need the fns below. Flag for removal!
+
 is_installed <- function(mypkg){ is.element(mypkg, installed.packages()[,1])}
 
 
