@@ -1,6 +1,6 @@
 #' comPair
 #'
-#' Function to compute and plot correlations of 2 series with retrospective
+#' Function to compute and plot correlations of 2 series (cumulative and by time window)
 #' @param X a data frame with 2 series
 #' @param order either "original" or "clustered" (for now, other options to be explored)
 #' @param label plot title, default is NULL
