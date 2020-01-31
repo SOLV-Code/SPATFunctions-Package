@@ -4,7 +4,7 @@
 \alias{plotPair}
 \title{plotPair}
 \usage{
-plotPair(X, labels = NULL, layout = "single", style = "default",
+plotPair(X, labels = NULL, layout = "single", style = "print",
   colors = NULL)
 }
 \arguments{
@@ -14,9 +14,9 @@ plotPair(X, labels = NULL, layout = "single", style = "default",
 
 \item{layout}{plot layout. currently includes: "single", "2axes", "2panels"}
 
-\item{colors}{vector with colors. Details depend on plot type. If NULL, use a built-in default specific for that plot type.}
+\item{style}{plot style. Currently includes "print" as the default, and "shiny" for use in apps.}
 
-\item{layout}{plot style. Currently includes "default"}
+\item{colors}{vector with colors. Details depend on plot type. If NULL, use a built-in default specific for that plot type.}
 }
 \description{
 Function to plot 2 time series with various options
