@@ -25,7 +25,8 @@ plot(1:5,1:5,type="n",bty="n",xlab=names(X)[1],ylab = "Correlation",
 abline(h=c(-0.5,0.5),col="red",lty=2)
 lines(X[!na.idx,1], fit.cor.window,type="l",col="lightblue")
 lines(X[!na.idx,1], fit.cor.cumul,type="o",pch=19,col="darkblue",cex=0.5)
-legend("topleft",legend=c("Window","Cumulative"),pch=c(NA,19),col=c("lightblue","darkblue"),,ncol=2,lty=1,bty="n")
+legend("topleft",legend=c("Window","Cumulative"),pch=c(NA,19),col=c("lightblue","darkblue")
+       ,ncol=2,lty=1,bty="n")
 title(main = paste(names(X)[2],"vs.",names(X)[3]))
 
 
