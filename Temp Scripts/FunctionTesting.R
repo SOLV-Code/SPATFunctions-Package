@@ -58,7 +58,9 @@ plotPair(tmp.log)
 
 tmp.z <- transformData(SPATData_EnvCov[,c("yr","jflow","peak")],type="z-score",
                          cols=c("jflow","peak"), zero.convert = NA )
-plotPair(tmp.z)
+plotPair(tmp.z,layout = "single")
+plotPair(tmp.z,layout = "2axes")
+plotPair(tmp.z,layout = "2panels")
 
 
 plotPair(SPATData_EnvCov[,c("yr","jflow","jnesst")],
@@ -75,3 +77,19 @@ plotPair(SPATData_EnvCov[,c("yr","jflow","jnesst")],
          labels = NULL,layout = "2panels",style = "print", colors = NULL)
 plotPair(SPATData_EnvCov[,c("yr","jflow","jnesst")],
          labels = NULL,layout = "2panels",style = "shiny", colors = NULL)
+
+
+
+###################################
+
+running.corr <- comPair(SPATData_EnvCov[,c("yr","jflow","pdo")],
+        window = 8,plot.type="print")
+
+running.corr
+
+
+
+
+
+
+

@@ -22,7 +22,7 @@ plotPair(X, labels = NULL, layout = "single", style = "print",
 Function to plot 2 time series with various options
 }
 \examples{
-plotPair(SPATData_EnvCov[,c("yr","jflow","peak")])
+plotPair(SPATData_EnvCov[,c("yr","jflow","pdo")])
 }
 \keyword{plot,}
 \keyword{series}

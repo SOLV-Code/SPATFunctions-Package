@@ -4,24 +4,22 @@
 \alias{comPair}
 \title{comPair}
 \usage{
-comPair(X, order = "original", n.groups = NA, label = NULL)
+comPair(X, window = 12, plot.type = "print")
 }
 \arguments{
-\item{X}{a data frame with 2 series}
+\item{X}{a data frame with 3 series, the first one is the time step (typically year)}
 
-\item{order}{either "original" or "clustered" (for now, other options to be explored)}
+\item{window}{number of time periods to use for each time window in the retrospective. Default is 12}
 
-\item{n.groups}{number of groups to mark (applies only if order = "clustered"). NA produces default of round(n/3).}
-
-\item{label}{plot title, default is NULL}
+\item{plot.type}{type of plot to generate: "none", "print", or "shiny" for use in the app.}
 }
 \description{
-Function to compute and plot correlations of 2 series (cumulative and by time window)
+Function to compute and plot correlations of 2 series (cumulative and by time window). Wrapper function for the
+the runCor() function from the TTR package.
 }
 \examples{
-M <- cor(mtcars)
-plotCorrMatrix(M)
+comPair(SPATData_EnvCov[,c("yr","jflow","pdo")])
 }
-\keyword{correlation}
-\keyword{matrix,}
-\keyword{plot}
+\keyword{correlation,}
+\keyword{pairwise}
+\keyword{retrospective}

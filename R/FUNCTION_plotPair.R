@@ -9,7 +9,7 @@
 #' @keywords plot, time series
 #' @export
 #' @examples
-#' plotPair(SPATData_EnvCov[,c("yr","jflow","peak")])
+#' plotPair(SPATData_EnvCov[,c("yr","jflow","pdo")])
 
 
 
