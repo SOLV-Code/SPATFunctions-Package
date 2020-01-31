@@ -1,40 +1,41 @@
 #' comPair
 #'
-#' Function to compute and plot correlations of 2 series (cumulative and by time window)
-#' @param X a data frame with 2 series
-#' @param order either "original" or "clustered" (for now, other options to be explored)
-#' @param label plot title, default is NULL
-#' @param n.groups number of groups to mark (applies only if order = "clustered"). NA produces default of round(n/3).
-#' @keywords correlation matrix, plot
+#' Function to compute and plot correlations of 2 series (cumulative and by time window). Wrapper function for the
+#' the runCor() function from the TTR package.
+#' @param X a data frame with 3 series, the first one is the time step (typically year)
+#' @param window number of time periods to use for each time window in the retrospective. Default is 12
+#' @param plot.type type of plot to generate: "none", "print", or "shiny" for use in the app.
+#' @keywords pairwise correlation, retrospective
 #' @export
 #' @examples
-#' M <- cor(mtcars)
-#' plotCorrMatrix(M)
+#' comPair(SPATData_EnvCov[,c("yr","jflow","pdo")])
 
 
 
-comPair <- function(X, order = "original",  n.groups = NA ,label = NULL){
+comPair <- function(X, window = 12 ,plot.type= "print"){
 
 
-# full or half matrix
-if(order == "hclust"){type <- "full"}
-if(order == "original"){type <- "upper"}
+na.idx <-  !complete.cases(X[,2:3])
 
-# prep for margin argument down the road
-margins <- c(1, 1, 1, 1)
+fit.cor.cumul <- runCor(X[!na.idx,2],X[!na.idx,3], n = window, sample = TRUE, cumulative = TRUE)
+fit.cor.window <- runCor(X[!na.idx,2],X[!na.idx,3], n = window, sample = TRUE, cumulative = FALSE)
 
-# do not display values in the principal diagonal
-diag <- FALSE
+plot(1:5,1:5,type="n",bty="n",xlab=names(X)[1],ylab = "Correlation",
+     ylim=c(-1,1),xlim=range(X[,1]))
+abline(h=c(-0.5,0.5),col="red",lty=2)
+lines(X[!na.idx,1], fit.cor.window,type="l",col="lightblue")
+lines(X[!na.idx,1], fit.cor.cumul,type="o",pch=19,col="darkblue",cex=0.5)
+legend("topleft",legend=c("Window","Cumulative"),pch=c(NA,19),col=c("lightblue","darkblue"),,ncol=2,lty=1,bty="n")
+title(main = paste(names(X)[2],"vs.",names(X)[3]))
 
-# would we ever use other than circle? do we give an option for that?
-method <- "circle"
 
-if(is.na(n.groups)){n.groups <- round(dim(X)[1])/3}
 
-corrplot(X, type= type,diag = diag, method = method,
-          order = order,addrect = n.groups,
-         mar = margins)
 
+
+
+X.out <- list(End= X[!na.idx,1],cumul.corr = fit.cor.cumul,window.corr = fit.cor.window )
+names(X.out)[1] <- names(X)[1]
+return(X.out)
 
 } # end plotCorrMatrix
 

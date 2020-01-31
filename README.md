@@ -30,7 +30,7 @@ library(SPATFunctions)
 *plotCorrMatrix()* | generate a plot of a correlation matrix with various options. It is a wrapper function for the corrplot function from the {corrplot} package
 *shiftSeries()* | applies offsets to the series in a data frame. For now it is a wrapper function for applying lead() or lag() from {dplyr} to each column. Looking for a more efficient implementation.
 *transformData()* | applies various data transformations to a data frame (log, percent rank, z-score), including case-specific handling of special cases (e.g. 0 values in log transform)
-*comPair()* | compute and plot correlations of 2 series (cumulative and by time window)
+*comPair()* | compute and plot correlations of 2 series (cumulative and by time window).Wrapper function for the the runCor() function from the TTR package
 *plotPair()* | plot 2 series (various display options)
 
 
