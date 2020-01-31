@@ -61,3 +61,10 @@ tmp.z <- transformData(SPATData_EnvCov[,c("yr","jflow","peak")],type="z-score",
 plotPair(tmp.z)
 
 
+plotPair(SPATData_EnvCov[,c("yr","jflow","jnesst")],labels = NULL,layout = "single",style = "default", colors = NULL)
+
+plotPair(SPATData_EnvCov[,c("yr","jflow","jnesst")],
+         labels = NULL,layout = "2axes",style = "default", colors = NULL)
+
+plotPair(SPATData_EnvCov[,c("yr","jflow","jnesst")],
+         labels = NULL,layout = "2panels",style = "default", colors = NULL)

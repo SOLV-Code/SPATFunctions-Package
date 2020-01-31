@@ -4,16 +4,19 @@
 \alias{plotPair}
 \title{plotPair}
 \usage{
-plotPair(X, labels = NULL, type = "default", colors = NULL)
+plotPair(X, labels = NULL, layout = "single", style = "default",
+  colors = NULL)
 }
 \arguments{
 \item{X}{a data frame with 3 series, the first one is the time step (typically year)}
 
 \item{labels}{vector with labels for the 3 columns of X. if NULL, then col names are used}
 
-\item{type}{plot layout. currently includes: "default", "2axes", "2panels"}
+\item{layout}{plot layout. currently includes: "single", "2axes", "2panels"}
 
 \item{colors}{vector with colors. Details depend on plot type. If NULL, use a built-in default specific for that plot type.}
+
+\item{layout}{plot style. Currently includes "default"}
 }
 \description{
 Function to plot 2 time series with various options
