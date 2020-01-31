@@ -50,4 +50,14 @@ head(SPATData_EnvCov)
 SPATData_EnvCov.shifted <- shiftSeries(SPATData_EnvCov, offsets=c(0,-2,1,2,0,3,0,0,0,0,0,0,0,0,0))
 head(SPATData_EnvCov.shifted)
 
+plotPair(SPATData_EnvCov[,c("yr","jflow","peak")])
+
+tmp.log <- transformData(SPATData_EnvCov[,c("yr","jflow","peak")],type="log",
+                     cols=c("jflow","peak"), zero.convert = NA )
+plotPair(tmp.log)
+
+tmp.z <- transformData(SPATData_EnvCov[,c("yr","jflow","peak")],type="z-score",
+                         cols=c("jflow","peak"), zero.convert = NA )
+plotPair(tmp.z)
+
 

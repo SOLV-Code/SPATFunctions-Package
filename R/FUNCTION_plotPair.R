@@ -1,42 +1,55 @@
-#' comPair
+#' plotPair
 #'
-#' Function to compute and plot correlations of 2 series (cumulative and by time window)
-#' @param X a data frame with 2 series
-#' @param order either "original" or "clustered" (for now, other options to be explored)
-#' @param label plot title, default is NULL
-#' @param n.groups number of groups to mark (applies only if order = "clustered"). NA produces default of round(n/3).
-#' @keywords correlation matrix, plot
+#' Function to plot 2 time series with various options
+#' @param X a data frame with 3 series, the first one is the time step (typically year)
+#' @param labels vector with labels for the 3 columns of X. if NULL, then col names are used
+#' @param type plot layout. currently includes: "default", "2axes", "2panels"
+#' @param colors vector with colors. Details depend on plot type. If NULL, use a built-in default specific for that plot type.
+#' @keywords plot, time series
 #' @export
 #' @examples
-#' M <- cor(mtcars)
-#' plotCorrMatrix(M)
+#' plotPair(SPATData_EnvCov[,c("yr","jflow","peak")])
 
 
 
-comPair <- function(X, order = "original",  n.groups = NA ,label = NULL){
+plotPair <- function(X, labels = NULL,type= "default",colors = NULL){
+
+x.lim <- range(X[,1],na.rm=TRUE)
+
+if(is.null(labels)){labels <- dimnames(X)[[2]]}
+
+# --------------------------------------------
+if(type=="default"){
+
+if(is.null(colors)){colors <- c("darkblue","red")}
+
+y.lim <- range(X[,c(2,3)],na.rm=TRUE)
+
+plot(X[,1],X[,2],xlim=x.lim,ylim=y.lim,bty="n", type="o",pch=19,xlab = labels[1],ylab="",col=colors[1])
+lines(X[,1],X[,3],type="o",pch=21,col=colors[2],bg="white")
+
+}
+
+# --------------------------------------------
+if(type=="2axes"){
+
+}
+# --------------------------------------------
+if(type=="2panels"){
+# use split.screen
 
 
-# full or half matrix
-if(order == "hclust"){type <- "full"}
-if(order == "original"){type <- "upper"}
-
-# prep for margin argument down the road
-margins <- c(1, 1, 1, 1)
-
-# do not display values in the principal diagonal
-diag <- FALSE
-
-# would we ever use other than circle? do we give an option for that?
-method <- "circle"
-
-if(is.na(n.groups)){n.groups <- round(dim(X)[1])/3}
-
-corrplot(X, type= type,diag = diag, method = method,
-          order = order,addrect = n.groups,
-         mar = margins)
+}
 
 
-} # end plotCorrMatrix
+
+
+
+
+
+
+
+} # end plotPair
 
 
 

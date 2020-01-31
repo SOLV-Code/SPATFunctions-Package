@@ -1,10 +1,5 @@
 # SPATFunctions-Package
-Functions for the Salmon Pattern Analysis Tool
-
-**Important Note**
-
-This package is under development. Functions will change rapidly and substantially.
-Do not use these if you are not part of the development team!
+Functions for the Salmon Pattern Analysis Tool. **Important Note:** This package is under development. Functions will change rapidly and substantially. Do not use these if you are not part of the development team!
 
 
 ## Quick Start
@@ -27,7 +22,7 @@ library(SPATFunctions)
 ### Key Functions
 
 
-#### Correlation Matrices
+#### Correlation Analyses
 
 **Function** | **Purpose**
 -- | --
@@ -39,7 +34,7 @@ library(SPATFunctions)
 *plotPair()* | plot 2 series (various display options)
 
 
-### Worked Example
+### Worked Examples
 
 
 
