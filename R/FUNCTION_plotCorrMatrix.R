@@ -18,8 +18,8 @@ plotCorrMatrix <- function(X, order = "original",  n.groups = NA ,label = NULL){
 
 
 # full or half matrix
-if(order == "hclust"){type <- "full"}
-if(order == "original"){type <- "upper"}
+if(order == "clustered"){type <- "full"; order.in <- "hclust"}
+if(order == "original"){type <- "upper"; ;order.in <- "original"}
 
 # prep for margin argument down the road
 margins <- c(1, 1, 1, 1)
@@ -33,7 +33,7 @@ method <- "circle"
 if(is.na(n.groups)){n.groups <- round(dim(X)[1])/3}
 
 corrplot(X, type= type,diag = diag, method = method,
-          order = order,addrect = n.groups,
+          order = order.in,addrect = n.groups,
          mar = margins)
 
 
