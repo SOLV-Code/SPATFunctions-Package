@@ -4,7 +4,7 @@
 \alias{plotPair}
 \title{plotPair}
 \usage{
-plotPair(X, labels = NULL, layout = "single", style = "print",
+plotPair(X, labels = NULL, layout = "single", plot.type = "print",
   colors = NULL)
 }
 \arguments{
@@ -14,7 +14,7 @@ plotPair(X, labels = NULL, layout = "single", style = "print",
 
 \item{layout}{plot layout. currently includes: "single", "2axes", "2panels"}
 
-\item{style}{plot style. Currently includes "print" as the default, and "shiny" for use in apps.}
+\item{plot.type}{plot style. Currently includes "print" as the default, and "shiny" for use in apps.}
 
 \item{colors}{vector with colors. Details depend on plot type. If NULL, use a built-in default specific for that plot type.}
 }
