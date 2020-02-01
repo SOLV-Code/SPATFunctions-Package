@@ -11,7 +11,10 @@ head(M$cor.mat)
 
 # plot correlation matrix
 plotCorrMatrix(M$cor.mat) # original order of variables
-plotCorrMatrix(M$cor.mat,order="hclust",n.groups=4)  # clustered by correlation
+plotCorrMatrix(M$cor.mat,order="clustered",n.groups=4)  # clustered by correlation
+plotCorrMatrix(M$cor.mat,order="clustered",n.groups=round(dim(M$cor.mat)[1]/3))
+round(dim(M$cor.mat)[1]/3)
+
 
 # repeat, with modified data:
 # - shift (offset) the pdo variable by 2 years (just as an illustration, this is not meaningful)
