@@ -4,7 +4,7 @@
 #' @param X a data frame with 3 series, the first one is the time step (typically year)
 #' @param labels vector with labels for the 3 columns of X. if NULL, then col names are used
 #' @param layout plot layout. currently includes: "single", "2axes", "2panels"
-#' @param style plot style. Currently includes "print" as the default, and "shiny" for use in apps.
+#' @param plot.type plot style. Currently includes "print" as the default, and "shiny" for use in apps.
 #' @param colors vector with colors. Details depend on plot type. If NULL, use a built-in default specific for that plot type.
 #' @keywords plot, time series
 #' @export
@@ -20,13 +20,13 @@ x.lim <- range(X[,1],na.rm=TRUE)
 if(is.null(labels)){labels <- dimnames(X)[[2]]}
 if(is.null(colors)){colors <- c("darkblue","red")}
 
-if(style == "print"){
+if(plot.type == "print"){
 lwd.use <- 1
 cex.axis.use <- 1
 }
 
 
-if(style == "shiny"){
+if(plot.type == "shiny"){
 lwd.use <- 2
 cex.axis.use <- 2
 }
