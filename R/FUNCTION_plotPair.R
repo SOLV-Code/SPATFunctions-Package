@@ -13,7 +13,7 @@
 
 
 
-plotPair <- function(X, labels = NULL,layout = "single",style = "print", colors = NULL){
+plotPair <- function(X, labels = NULL,layout = "single",plot.type = "print", colors = NULL){
 
 x.lim <- range(X[,1],na.rm=TRUE)
 
