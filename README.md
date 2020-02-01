@@ -3,9 +3,7 @@ Functions for the Salmon Pattern Analysis Tool. **Important Note:** This package
 
 To get up and running with some examples, follow the *Quick Start* steps below. For more about the project (e.g. design principles, completed and planned functionality), go to the [wiki pages](https://github.com/SOLV-Code/SPATFunctions-Package/wiki). Leave any comments, feature requests, or bug reports on the [issues page](https://github.com/SOLV-Code/SPATFunctions-Package/issues).
 
-
 ## Quick Start
-
 
 ### Install
 
@@ -51,7 +49,7 @@ data.z <- transformData(data.shifted,type="z-score",
 head(data.z)
 M.z <- calcCorrMatrix(data.z[,-1])
 plotCorrMatrix(M.z$cor.mat) # original order of variables
-plotCorrMatrix(M.z$cor.mat,order="hclust",n.groups=4)
+plotCorrMatrix(M.z$cor.mat,order="clustered",n.groups=4)
 
 
 # pairwise correlations (cumulative and by time window)
