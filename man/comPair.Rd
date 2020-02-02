@@ -11,7 +11,7 @@ comPair(X, window = 12, plot.type = "print")
 
 \item{window}{number of time periods to use for each time window in the retrospective. Default is 12}
 
-\item{plot.type}{type of plot to generate: "none", "print", or "shiny" for use in the app.}
+\item{plot.type}{type of plot to generate: "none", "print", or "shiny" for use in the app. "shiny" type plots use {plotly}}
 }
 \description{
 Function to compute and plot correlations of 2 series (cumulative and by time window). Wrapper function for the

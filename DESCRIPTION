@@ -8,7 +8,7 @@ Description: This package includes functions for data exploration, data transfor
 License: GNU General Public Licence
 Encoding: UTF-8
 LazyData: true
-Imports: tidyverse, knitr, classInt, corrr, corrplot ,TTR, dplyr
+Imports: tidyverse, knitr, classInt, corrr, corrplot ,TTR, dplyr, plotly
 SystemRequirements: 
 Suggestions:
 VignetteBuilder: knitr
