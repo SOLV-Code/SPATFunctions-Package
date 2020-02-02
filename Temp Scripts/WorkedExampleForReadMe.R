@@ -47,3 +47,16 @@ running.corr.z <- comPair(data.z[,c("yr",vars.test)],
                         window = 12,plot.type="print")
 running.corr.z
 
+
+# plotly testing
+library(plotly)
+
+
+plotPair(SPATData_EnvCov[,c("yr",vars.test)],layout = "single",plot.type = "shiny")
+
+plotPair(SPATData_EnvCov[,c("yr",vars.test)],layout = "2panels",plot.type = "shiny")
+
+plotPair(SPATData_EnvCov[,c("yr",vars.test)],layout = "2axes",plot.type = "shiny")
+
+
+

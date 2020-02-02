@@ -4,7 +4,7 @@
 #' the runCor() function from the TTR package.
 #' @param X a data frame with 3 series, the first one is the time step (typically year)
 #' @param window number of time periods to use for each time window in the retrospective. Default is 12
-#' @param plot.type type of plot to generate: "none", "print", or "shiny" for use in the app.
+#' @param plot.type type of plot to generate: "none", "print", or "shiny" for use in the app. "shiny" type plots use {plotly}
 #' @keywords pairwise correlation, retrospective
 #' @export
 #' @examples
@@ -19,6 +19,7 @@ na.idx <-  !complete.cases(X[,2:3])
 
 fit.cor.cumul <- runCor(X[!na.idx,2],X[!na.idx,3], n = window, sample = TRUE, cumulative = TRUE)
 fit.cor.window <- runCor(X[!na.idx,2],X[!na.idx,3], n = window, sample = TRUE, cumulative = FALSE)
+
 
 plot(1:5,1:5,type="n",bty="n",xlab=names(X)[1],ylab = "Correlation",
      ylim=c(-1,1),xlim=range(X[,1]))
