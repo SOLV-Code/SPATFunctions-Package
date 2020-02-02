@@ -45,8 +45,6 @@ p <- plot_ly(X, x = ~x_vec, y = ~L1_vec, name = labels[2], type = "scatter", mod
          xaxis = list(title = labels[1]),
          yaxis = list (title = ""))
 
-print(p)
-
 } # end shiny single
 
 
@@ -88,7 +86,6 @@ p2 <- plot_ly(X, x = ~x_vec, y = ~L2_vec, name = labels[3], type = "scatter", mo
 
 p <- subplot(p1, p2,nrows = 2, shareX = TRUE)
 
-print(p)
 
 } # end shiny 2 panels
 
@@ -107,10 +104,13 @@ if(layout == "2axes" & plot.type == "shiny"){
       xaxis = list(title=labels[1])
     )
 
-  print(p)
+
 
 } # end shiny 2 panels
 
+
+
+if(plot.type == "shiny"){return(p)}
 
 
 } # end plotPair
