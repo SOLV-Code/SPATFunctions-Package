@@ -78,7 +78,7 @@ if(layout == "2panels"){close.screen(all.screens = TRUE)}
 
 
 if(layout == "2panels" & plot.type == "shiny"){
-
+# https://plot.ly/r/subplots/
 p1 <- plot_ly(X, x = ~x_vec, y = ~L1_vec, name = labels[2], type = "scatter", mode = "lines+markers") %>%
       layout(title = "", xaxis = list(title = labels[1]), yaxis = list (title = labels[2]))
 
@@ -86,11 +86,31 @@ p1 <- plot_ly(X, x = ~x_vec, y = ~L1_vec, name = labels[2], type = "scatter", mo
 p2 <- plot_ly(X, x = ~x_vec, y = ~L2_vec, name = labels[3], type = "scatter", mode = "lines+markers") %>%
   layout(title = "", xaxis = list(title = labels[1]), yaxis = list (title = labels[3]))
 
-p <- subplot(p1, p2)
+p <- subplot(p1, p2,nrows = 2, shareX = TRUE)
 
 print(p)
 
 } # end shiny 2 panels
+
+
+if(layout == "2axes" & plot.type == "shiny"){
+#https://plot.ly/r/multiple-axes/
+
+
+  y2.axis <- list(tickfont = list(color = "red"), overlaying = "y", side = "right",
+                  title = labels[3] )
+
+  p <- plot_ly(X, x = ~x_vec, y = ~L1_vec, name = labels[2], type = "scatter", mode = "lines+markers") %>%
+    add_lines(x = ~x_vec, y = ~L2_vec, name = labels[3], yaxis = "y2") %>%
+    layout(
+      title = list(title = labels[1]), yaxis2 = y2.axis, yaxis = list(title=labels[2]),
+      xaxis = list(title=labels[1])
+    )
+
+  print(p)
+
+} # end shiny 2 panels
+
 
 
 } # end plotPair

@@ -56,7 +56,7 @@ plotPair(SPATData_EnvCov[,c("yr",vars.test)],layout = "single",plot.type = "shin
 
 plotPair(SPATData_EnvCov[,c("yr",vars.test)],layout = "2panels",plot.type = "shiny")
 
-
+plotPair(SPATData_EnvCov[,c("yr",vars.test)],layout = "2axes",plot.type = "shiny")
 
 
 
