@@ -10,6 +10,7 @@ include.dependencies <- function(){
 #' @import corrplot
 #' @import TTR
 #' @import plotly
+#' @import mclust
 #' @return Nothing returned.
 #' @export
 
