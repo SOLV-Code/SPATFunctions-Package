@@ -46,7 +46,7 @@ plotCorrMatrix(M$cor.mat,order="hclust",n.groups=4)  # clustered by correlation
 # - shift (offset) the pdo variable by 2 years (just as an illustration, this is not meaningful)
 # - transform all variables to z-score (i.e. normalize)
 head(SPATData_EnvCov)
-data.shifted <- shiftSeries(SPATData_EnvCov, offsets=c(0,0,0,0,0,0,0,0,0,0,0,0,-2,0,0))
+data.shifted <- shiftSeries(SPATData_EnvCov, offsets=c(0,0,0,0,0,0,0,0,0,0,0,0,-2,0,0,rep(0,18)))
 head(data.shifted)
 data.z <- transformData(data.shifted,type="z-score",
                        cols=names(data.shifted)[names(data.shifted)!="yr"],
@@ -59,7 +59,7 @@ plotCorrMatrix(M.z$cor.mat,order="clustered",n.groups=4)
 
 # pairwise correlations (cumulative and by time window)
 
-vars.test <- c("jflow","pdo")
+vars.test <- c("EC_jflow","EC_pdo")
 
 plotPair(SPATData_EnvCov[,c("yr",vars.test)],layout = "single")
 plotPair(data.z[,c("yr",vars.test)],layout = "2panels")
