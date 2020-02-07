@@ -47,6 +47,12 @@ running.corr.z <- comPair(data.z[,c("yr",vars.test)],
                         window = 12,plot.type="print")
 running.corr.z
 
+running.corr.z <- comPair(data.z[,c("yr",vars.test)],
+                          window = 12,plot.type="shiny")
+print(running.corr.z$plot)
+
+
+
 
 # plotly testing
 library(plotly)
