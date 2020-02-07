@@ -43,7 +43,8 @@ p <- plot_ly(X, x = ~x_vec, y = ~L1_vec, name = labels[2], type = "scatter", mod
     add_trace(y = ~L2_vec, name = labels[3], mode = "lines+markers") %>%
     layout(title = "",
          xaxis = list(title = labels[1]),
-         yaxis = list (title = ""))
+         yaxis = list (title = ""),
+         legend = list(orientation = 'h',x = 0.1, y = 1))
 
 } # end shiny single
 
@@ -78,7 +79,8 @@ if(layout == "2panels"){close.screen(all.screens = TRUE)}
 if(layout == "2panels" & plot.type == "shiny"){
 # https://plot.ly/r/subplots/
 p1 <- plot_ly(X, x = ~x_vec, y = ~L1_vec, name = labels[2], type = "scatter", mode = "lines+markers") %>%
-      layout(title = "", xaxis = list(title = labels[1]), yaxis = list (title = labels[2]))
+      layout(title = "", xaxis = list(title = labels[1]), yaxis = list (title = labels[2]),
+             legend = list(orientation = 'h',x = 0.1, y = 1))
 
 
 p2 <- plot_ly(X, x = ~x_vec, y = ~L2_vec, name = labels[3], type = "scatter", mode = "lines+markers") %>%
@@ -101,7 +103,8 @@ if(layout == "2axes" & plot.type == "shiny"){
     add_lines(x = ~x_vec, y = ~L2_vec, name = labels[3], yaxis = "y2") %>%
     layout(
       title = list(title = labels[1]), yaxis2 = y2.axis, yaxis = list(title=labels[2]),
-      xaxis = list(title=labels[1])
+      xaxis = list(title=labels[1]),
+      legend = list(orientation = 'h',x = 0.1, y = 1)
     )
 
 

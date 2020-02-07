@@ -49,7 +49,7 @@ p <- plot_ly(x.corr, x = ~x_vec, y = ~Cumulative, name = "Cumulative", type = "s
         layout(title = "", #paste(names(X)[2],"vs.",names(X)[3]),
          xaxis = list(title = "Years"),
          yaxis = list(title = "Correlation",range=c(-1,1)),
-         legend = list(orientation = 'h',x = min(x.corr[,1]), y = 1))
+         legend = list(orientation = 'h',x = 0.1, y = 1))
 
 
 }
