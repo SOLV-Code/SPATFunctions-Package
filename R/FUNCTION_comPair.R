@@ -57,9 +57,9 @@ p <- plot_ly(x.corr, x = ~x_vec, y = ~Cumulative, name = "Cumulative", type = "s
 X.out <- list(End= X[!na.idx,1],cumul.corr = fit.cor.cumul,window.corr = fit.cor.window )
 names(X.out)[1] <- names(X)[1]
 
-if(plot.type == "print"){return(list(corr.out = X.out))}
+if(plot.type == "print"){return(X.out)}
 
-if(plot.type == "shiny"){return(list(corr.out = X.out,plot = p))}
+if(plot.type == "shiny"){return(p)}
 
 } # end plotCorrMatrix
 
