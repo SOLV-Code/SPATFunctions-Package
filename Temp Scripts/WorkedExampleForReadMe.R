@@ -52,6 +52,8 @@ running.corr.z
 library(plotly)
 
 
+dim(drop_na(SPATData_EnvCov))
+
 test <- plotPair(SPATData_EnvCov[,c("yr",vars.test)],layout = "single",plot.type = "shiny")
 
 plotPair(SPATData_EnvCov[,c("yr",vars.test)],layout = "2panels",plot.type = "shiny")
