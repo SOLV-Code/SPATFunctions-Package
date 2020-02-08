@@ -4,7 +4,7 @@
 \alias{plotGroup}
 \title{plotGroup}
 \usage{
-plotGroup(X, agg.idx = NULL, plot.type = "print")
+plotGroup(X, agg.idx = "none", plot.type = "print")
 }
 \arguments{
 \item{X}{a data frame with at least 2 series, the first one is the time step (for now MUST be "yr")}
