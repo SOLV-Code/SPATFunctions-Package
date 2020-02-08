@@ -56,7 +56,7 @@ if(agg.idx !="none"){p <- p %>% plotly::add_trace(x = agg.idx.df$yr, y = agg.idx
 
 X.out <- list()
 
-if(!is.null(agg.idx)){X.out <- c(X.out,list(agg.idx = agg.idx.df ))}
+if(agg.idx !="none"){X.out <- c(X.out,list(agg.idx = agg.idx.df ))}
 
 if(plot.type == "shiny"){X.out <- c(X.out,list(plot = p))}
 
