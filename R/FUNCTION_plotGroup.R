@@ -13,8 +13,7 @@
 plotGroup <- function(X,agg.idx=NULL,plot.type="print"){
 
 if(!is.null(agg.idx)){
-agg.idx.df <- data.frame(yr = X$yr,
-                         idx = apply(select(X,-yr),MARGIN = 1,FUN=agg.idx  ))
+agg.idx.df <- data.frame(yr = X$yr, idx = apply(select(X,-yr),MARGIN = 1,FUN=agg.idx  ))
 }
 
 
@@ -33,18 +32,19 @@ for(i in 1:n.series){
 	lines(X$yr,X[,i],type="o",pch=pch.vec[i],col=col.vec[i],bg="white",cex=0.5)
 }
 legend("topright",legend= unlist(names(X))[-1],bty="n",pch=pch.vec,col=col.vec,lty=1)
-if(!is.null(agg.idx)){lines(agg.idx.df$yr,agg.idx.df$idx,col="red",lwd=7,type="l")
+if(!is.null(agg.idx)){lines(agg.idx.df$yr,agg.idx.df$idx,col="red",lwd=7,type="l")}
 
 } # and plot.type = "print"
 
 if(plot.type=="shiny"){
-
+  print("flag1")
 p <- plot_ly(X, type = 'scatter', mode = 'lines+markers') %>%
   layout(#title = "abbb",
     xaxis = list(title = "Year"),
     yaxis = list (title = "Value"),
     legend = list(orientation = 'v'),
     autosize=TRUE)
+print("flag2")
 for(trace in colnames(X)[2:ncol(X)]){
   p <- p %>% plotly::add_trace(x = X[['yr']], y = X[[trace]], name = trace)
 }
@@ -52,7 +52,7 @@ if(!is.null(agg.idx)){p <- p %>% plotly::add_trace(x = agg.idx.df$yr, y = agg.id
 
 } # end if plot.type = "Shiny"
 
-}
+
 
 X.out <- list()
 
