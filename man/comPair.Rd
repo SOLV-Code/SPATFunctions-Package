@@ -18,7 +18,7 @@ Function to compute and plot correlations of 2 series (cumulative and by time wi
 the runCor() function from the TTR package.
 }
 \examples{
-comPair(SPATData_EnvCov[,c("yr","jflow","pdo")])
+comPair(SPATData_EnvCov[,c("yr","EC_jflow","EC_pdo")])
 }
 \keyword{correlation,}
 \keyword{pairwise}
