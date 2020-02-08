@@ -89,6 +89,68 @@ running.corr
 
 
 
+#################################################
+library(SPATFunctions)
+library(tidyverse)
+group.df <- SPATData_EnvCov[,1:5]
+
+
+agg.idx <- mean # "median"
+
+if(!is.null(agg.idx)){
+agg.idx.df <- data.frame(yr = group.df$yr,
+                         idx = apply(select(group.df,-yr),MARGIN = 1,FUN=agg.idx  ))
+}
+
+
+
+# basic plot
+col.list <- c("blue","green","firebrick1","lightblue","grey")
+pch.list <- 19:22
+
+y.lim <- c(0,max(select(group.df,-1),na.rm=TRUE))
+
+plot(1:5,1:5,type="n",bty="n",xlim=range(group.df$yr),ylim=y.lim,xlab="Year",ylab="")
+n.series <- dim(group.df)[2] -1
+col.vec <- sample(col.list,n.series,replace=TRUE)
+pch.vec<- sample(pch.list,n.series,replace=TRUE)
+for(i in 1:n.series){
+lines(group.df$yr,group.df[,i],type="o",pch=pch.vec[i],col=col.vec[i],bg="white",cex=0.5)
+}
+legend("topright",legend= unlist(names(group.df))[-1],bty="n",pch=pch.vec,col=col.vec,lty=1)
+if(!is.null(agg.idx)){lines(agg.idx.df$yr,agg.idx.df$idx,col="red",lwd=7,type="l")}
+
+
+# plotly plot
+library(plotly)
+p <- plot_ly(group.df, type = 'scatter', mode = 'lines+markers',
+              width = 1) %>%
+  layout(#title = "abbb",
+    xaxis = list(title = "Time"),
+    yaxis = list (title = "Value"),
+    legend = list(orientation = 'v'))
+for(trace in colnames(group.df)[2:ncol(group.df)]){
+  p <- p %>% plotly::add_trace(x = group.df[['yr']], y = group.df[[trace]], name = trace)
+}
+if(!is.null(agg.idx)){p <- p %>% plotly::add_trace(x = agg.idx.df$yr, y = agg.idx.df$idx, name = "index",mode="lines",
+                             line = list(color = 'red',width=8))}
+p
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

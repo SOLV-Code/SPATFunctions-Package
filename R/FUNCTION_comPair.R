@@ -8,7 +8,7 @@
 #' @keywords pairwise correlation, retrospective
 #' @export
 #' @examples
-#' comPair(SPATData_EnvCov[,c("yr","jflow","pdo")])
+#' comPair(SPATData_EnvCov[,c("yr","EC_jflow","EC_pdo")])
 
 
 

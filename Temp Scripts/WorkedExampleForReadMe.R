@@ -70,3 +70,11 @@ plotPair(SPATData_EnvCov[,c("yr",vars.test)],layout = "2axes",plot.type = "shiny
 
 
 
+####################
+group.out <- plotGroup(SPATData_EnvCov[,1:5],agg.idx="median",plot.type="print")
+names(group.out)
+
+group.out <- plotGroup(SPATData_EnvCov[,1:5],agg.idx="median",plot.type="shiny")
+names(group.out)
+group.out$plot
+
