@@ -4,7 +4,8 @@
 \alias{plotGroup}
 \title{plotGroup}
 \usage{
-plotGroup(X, agg.idx = "none", plot.type = "print")
+plotGroup(X, agg.idx = "none", plot.type = "print",
+  idx.label = "index")
 }
 \arguments{
 \item{X}{a data frame with at least 2 series, the first one is the time step (for now MUST be "yr")}
@@ -12,12 +13,14 @@ plotGroup(X, agg.idx = "none", plot.type = "print")
 \item{agg.idx}{function to be used for an aggregate index across series. Default is "none". Options include any function that works in apply(). Typical examples are "mean", "median". Plan is to include various custom options.}
 
 \item{plot.type}{type of plot to generate: "none","print", or "shiny" for use in the app. "shiny" type plots use {plotly}}
+
+\item{idx.label}{label for the agg.idx in the output object}
 }
 \description{
 Function to generate a plot of multiple time series in a group, and optionally include an aggregate index.
 }
 \examples{
-plotGroup(SPATData_EnvCov[,1:5],agg.idx="median",plot.type="print")
+plotGroup(SPATData_EnvCov[,1:5],agg.idx="median",plot.type="print",idx.label = "index")
 }
 \keyword{index}
 \keyword{line}
