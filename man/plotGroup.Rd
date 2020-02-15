@@ -11,7 +11,7 @@ plotGroup(X, agg.idx = "none", plot.type = "print")
 
 \item{agg.idx}{function to be used for an aggregate index across series. Default is "none". Options include any function that works in apply(). Typical examples are "mean", "median". Plan is to include various custom options.}
 
-\item{plot.type}{type of plot to generate: "print", or "shiny" for use in the app. "shiny" type plots use {plotly}}
+\item{plot.type}{type of plot to generate: "none","print", or "shiny" for use in the app. "shiny" type plots use {plotly}}
 }
 \description{
 Function to generate a plot of multiple time series in a group, and optionally include an aggregate index.

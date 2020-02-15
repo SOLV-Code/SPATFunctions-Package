@@ -84,5 +84,6 @@ names(group.out)
 group.out$plot
 group.out$agg.idx
 
-
-
+group.out <- plotGroup(SPATData_EnvCov[,1:5],agg.idx="mean",plot.type="none")
+names(group.out)
+group.out$agg.idx

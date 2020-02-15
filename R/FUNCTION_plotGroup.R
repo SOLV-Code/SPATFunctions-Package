@@ -3,7 +3,7 @@
 #' Function to generate a plot of multiple time series in a group, and optionally include an aggregate index.
 #' @param X a data frame with at least 2 series, the first one is the time step (for now MUST be "yr")
 #' @param agg.idx function to be used for an aggregate index across series. Default is "none". Options include any function that works in apply(). Typical examples are "mean", "median". Plan is to include various custom options.
-#' @param plot.type type of plot to generate: "print", or "shiny" for use in the app. "shiny" type plots use {plotly}
+#' @param plot.type type of plot to generate: "none","print", or "shiny" for use in the app. "shiny" type plots use {plotly}
 #' @keywords line plot, index
 #' @export
 #' @examples
@@ -16,7 +16,7 @@ if(agg.idx !="none"){
 agg.idx.df <- data.frame(yr = X$yr, idx = apply(select(X,-yr),MARGIN = 1,FUN=agg.idx  ))
 }
 
-
+if(plot.type != "none"){
 if(plot.type=="print"){
 
 col.list <- c("blue","green","firebrick1","lightblue","grey")
@@ -52,6 +52,7 @@ if(agg.idx !="none"){p <- p %>% plotly::add_trace(x = agg.idx.df$yr, y = agg.idx
 
 } # end if plot.type = "Shiny"
 
+} # end if plot.type != "none"
 
 #old
 #X.out <- list()
@@ -61,9 +62,9 @@ if(agg.idx !="none"){p <- p %>% plotly::add_trace(x = agg.idx.df$yr, y = agg.idx
 # new test -> always get some agg.idx output
 if(agg.idx =="none"){ agg.idx.df<- data.frame(yr = X$yr, idx = rep(NA, length(X$yr))) }
 
-
-
-X.out <- list(agg.idx = agg.idx.df ,plot = p)
+X.out <- list()
+X.out <- c(X.out,list(agg.idx = agg.idx.df ))
+if(plot.type == "shiny"){X.out <- c(X.out,list(plot = p))}
 
 
 return(X.out)
