@@ -9,7 +9,7 @@ plotGroup(X, agg.idx = "none", plot.type = "print")
 \arguments{
 \item{X}{a data frame with at least 2 series, the first one is the time step (for now MUST be "yr")}
 
-\item{agg.idx}{function to be used for an aggregate index across series. Default is NULL. Options include any function that works in apply(). Typical examples are "mean", "median". Plan is to include various custom options.}
+\item{agg.idx}{function to be used for an aggregate index across series. Default is "none". Options include any function that works in apply(). Typical examples are "mean", "median". Plan is to include various custom options.}
 
 \item{plot.type}{type of plot to generate: "print", or "shiny" for use in the app. "shiny" type plots use {plotly}}
 }
