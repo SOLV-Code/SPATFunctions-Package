@@ -15,6 +15,10 @@ plotCorrMatrix(M$cor.mat,order="clustered",n.groups=4)  # clustered by correlati
 plotCorrMatrix(M$cor.mat,order="clustered",n.groups=round(dim(M$cor.mat)[1]/3))
 round(dim(M$cor.mat)[1]/3)
 
+plotCorrMatrix(M$cor.mat,order="clustered",n.groups=4,plot.type = "color")
+plotCorrMatrix(M$cor.mat,order="clustered",n.groups=4,plot.type = "number")
+plotCorrMatrix(M$cor.mat,order="clustered",n.groups=4,plot.type = "circle")
+
 
 # repeat, with modified data:
 # - shift (offset) the pdo variable by 2 years (just as an illustration, this is not meaningful)

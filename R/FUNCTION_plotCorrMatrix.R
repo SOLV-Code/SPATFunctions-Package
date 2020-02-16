@@ -6,6 +6,7 @@
 #' @param order either "original" or "clustered" (for now, other options to be explored)
 #' @param label plot title, default is NULL
 #' @param n.groups number of groups to mark (applies only if order = "clustered"). NA produces default of round(n/3).
+#' @param plot.type layout options in corrplot package. Default is "circle". Other good options are "color" and "number"
 #' @keywords correlation matrix, plot
 #' @export
 #' @examples
@@ -14,7 +15,11 @@
 
 
 
-plotCorrMatrix <- function(X, order = "original",  n.groups = NA ,label = NULL){
+plotCorrMatrix <- function(X, order = "original",  n.groups = NA ,label = NULL, plot.type="circle"){
+
+
+# layout options
+# https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html
 
 
 # full or half matrix
@@ -27,12 +32,11 @@ margins <- c(1, 1, 1, 1)
 # do not display values in the principal diagonal
 diag <- FALSE
 
-# would we ever use other than circle? do we give an option for that?
-method <- "circle"
+
 
 if(is.na(n.groups)){n.groups <- round(dim(X)[1]/3)}
 
-corrplot(X, type= type,diag = diag, method = method,
+corrplot(X, type= type,diag = diag, method = plot.type,
           order = order.in,addrect = n.groups,
          mar = margins)
 
