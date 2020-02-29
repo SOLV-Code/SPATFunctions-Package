@@ -4,8 +4,13 @@
 \alias{applyKMeans2D}
 \title{applyKMeans2D}
 \usage{
-applyKMeans2D(x, centers = 3, iter.max = 100, nstart = 5,
-  algorithm = "Hartigan-Wong")
+applyKMeans2D(
+  x,
+  centers = 3,
+  iter.max = 100,
+  nstart = 5,
+  algorithm = "Hartigan-Wong"
+)
 }
 \arguments{
 \item{x}{data frame with 2 numeric columns.}

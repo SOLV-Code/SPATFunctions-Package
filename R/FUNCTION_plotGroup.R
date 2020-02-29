@@ -49,7 +49,7 @@ p <- plot_ly(X, type = 'scatter', mode = 'lines+markers') %>%
 for(trace in colnames(X)[2:ncol(X)]){
   p <- p %>% plotly::add_trace(x = X[['yr']], y = X[[trace]], name = trace)
 }
-if(agg.idx !="none"){p <- p %>% plotly::add_trace(x = agg.idx.df$yr, y = agg.idx.df$idx, name = "index",mode="lines",line = list(color = 'red',width=8))}
+if(agg.idx !="none"){p <- p %>% plotly::add_trace(x = agg.idx.df$yr, y = agg.idx.df$idx, name = idx.label,mode="lines",line = list(color = 'red',width=8))}
 
 } # end if plot.type = "Shiny"
 

@@ -4,8 +4,13 @@
 \alias{plotPair}
 \title{plotPair}
 \usage{
-plotPair(X, labels = NULL, layout = "single", plot.type = "print",
-  colors = NULL)
+plotPair(
+  X,
+  labels = NULL,
+  layout = "single",
+  plot.type = "print",
+  colors = NULL
+)
 }
 \arguments{
 \item{X}{a data frame with 3 series, the first one is the time step (typically year)}
