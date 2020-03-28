@@ -23,7 +23,22 @@ library(devtools) # Load the devtools package.
 install_github("SOLV-Code/SPATFunctions-Package", 
 				dependencies = TRUE,
                 build_vignettes = FALSE)
-library(SPATFunctions)				
+library(SPATFunctions)		
+
+# check the built in data set
+?SPATData_EnvCov
+
+# check the correlation functions
+
+?shiftSeries
+?transformData
+
+?plotPair
+?comPair
+
+?calcCorrMatrix
+?plotCorrMatrix
+		
 ```
 
 
