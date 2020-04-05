@@ -92,3 +92,24 @@ group.out <- plotGroup(SPATData_EnvCov[,1:5],agg.idx="mean",plot.type="shiny",id
 names(group.out)
 group.out$plot
 group.out$agg.idx
+
+
+
+
+
+##################
+# OTHER PLOTS
+
+
+
+
+
+plotBoxes(list.in = list(Var1 = rnorm(200,100,1),Var2 = rnorm(200,0.5,3)))
+
+
+
+
+
+
+
+
