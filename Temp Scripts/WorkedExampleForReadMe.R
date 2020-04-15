@@ -160,7 +160,8 @@ plotSPLOM(SPATData_EnvCov[,2:5])
 
 
 
-plotRanked(SPATData_EnvCov[,2:5])
+
+plotRanked(log(SPATData_EnvCov[,16:33]),maxvars=NULL,flag=names(SPATData_EnvCov)[19])
 
 
 
