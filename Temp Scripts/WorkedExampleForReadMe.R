@@ -158,3 +158,14 @@ diag.panel = dens.spark
 
 plotSPLOM(SPATData_EnvCov[,2:5])
 
+
+
+plotRanked(SPATData_EnvCov[,2:5])
+
+
+
+
+
+
+
+
