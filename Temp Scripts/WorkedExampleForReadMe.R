@@ -159,14 +159,11 @@ diag.panel = dens.spark
 plotSPLOM(SPATData_EnvCov[,2:5])
 
 
+library(SPATFunctions)
 
+test <- plotRanked(log(SPATData_EnvCov[,16:33]),trim = 5,maxvars=NULL,flag=names(SPATData_EnvCov)[19])
 
-plotRanked(log(SPATData_EnvCov[,16:33]),maxvars=NULL,flag=names(SPATData_EnvCov)[19])
-
-
-
-
-
+test
 
 
 
