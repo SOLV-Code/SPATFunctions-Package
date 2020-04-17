@@ -166,4 +166,5 @@ test <- plotRanked(log(SPATData_EnvCov[,16:33]),trim = 5,maxvars=NULL,flag=names
 test
 
 
-
+test <- plotRanked(log(SPATData_EnvCov[,2:5]),trim = 7,maxvars=NULL,flag=names(SPATData_EnvCov)[19])
+test
