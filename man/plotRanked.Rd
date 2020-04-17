@@ -19,7 +19,7 @@ plotRanked(data.df, trim = 25, maxvars = NULL, xlim = NULL, flag = NULL)
 Function to generate a summary plot with variables ranked by median and showing range.
 }
 \examples{
-plotRanked(SPATData_EnvCov[,2:5])
+plotRanked(SPATData_EnvCov[,16:33],maxvars=NULL,flag=names(SPATData_EnvCov)[19])
 }
 \keyword{range}
 \keyword{ranking,}

@@ -8,7 +8,7 @@
 #' @keywords ranking, range
 #' @export
 #' @examples
-#' test <- plotRanked(SPATData_EnvCov[,16:33],maxvars=NULL,flag=names(SPATData_EnvCov)[19])
+#' plotRanked(SPATData_EnvCov[,16:33],maxvars=NULL,flag=names(SPATData_EnvCov)[19])
 
 
 plotRanked <- function(data.df,trim = 25, maxvars=NULL,xlim=NULL,flag=NULL){
@@ -26,7 +26,7 @@ plotRanked <- function(data.df,trim = 25, maxvars=NULL,xlim=NULL,flag=NULL){
 
 	if(length(data.df)>1){
 
-	data.summary <- as.data.frame(t(apply(data.df,MARGIN=2,FUN = quantile, probs=seq(0,1,by=0.05),na.rm=TRUE))) #%>% arrange(desc("50%")) # not working
+	data.summary <- as.data.frame(t(apply(data.df,MARGIN=2,FUN = quantile, probs=seq(0,1,by=0.01),na.rm=TRUE))) #%>% arrange(desc("50%")) # not working
 
 	# do it the old-fashioned way...
 	data.summary <- data.summary[order(data.summary[,"50%"],decreasing = TRUE),]
@@ -50,7 +50,7 @@ plotRanked <- function(data.df,trim = 25, maxvars=NULL,xlim=NULL,flag=NULL){
 	plot(1:10,1:10, xlim=xlim,ylim=c(1,num.units), #main="Ranked By Median",
 		cex.main=0.8, 	type="n",bty="n",axes=FALSE,xlab= "",ylab="",cex.lab=1.5)
 
-	axis(2,at=tick.loc ,labels=names(data.df),las=1,lwd=1,line=1)
+	axis(2,at=tick.loc ,labels=dimnames(data.summary)[[1]],las=1,lwd=1,line=1)
 
 	x.ticks <- pretty(xlim,n=5)
 	x.ticks <- x.ticks[x.ticks<xlim[2] & x.ticks > xlim[1]]
